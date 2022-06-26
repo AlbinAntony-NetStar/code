@@ -30,7 +30,7 @@ pipeline
             steps
             {
                 sh " zip -r test.zip . "
-                sh " /usr/bin/scp -i /var/lib/jenkins/workspace/code-new/aws.pem test.zip ubuntu@13.126.2.140:/home/ubuntu/ "
+                sh " /usr/bin/scp -i /var/lib/jenkins/workspace/code-new/aws.pem test.zip ubuntu@13.235.86.211:/home/ubuntu/ "
                 sh "rm -rf test.zip "
                 sh " echo project runnings "
               

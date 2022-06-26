@@ -37,6 +37,18 @@ pipeline
                
             }
         }
+        stage('Echo')
+        {
+            steps
+            {
+                script
+                {
+                    withCredentials([string(credentialsId: 'test-id', variable: 'SECRET')]) {
+                        echo "My secret text is '${SECRET}'"
+}
+                }
+            }
+        }
     
         stage('Remote login') 
         {

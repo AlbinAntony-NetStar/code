@@ -46,7 +46,7 @@ pipeline
                 {
                     def remote = [:]
                     remote.name = "test-app"
-                    remote.host = "13.126.2.140"
+                    remote.host = "13.235.86.211"
                     remote.allowAnyHosts = true
                    withCredentials([sshUserPrivateKey(credentialsId: 'test-app', keyFileVariable: 'id', usernameVariable: 'ubuntu')]) 
                     {

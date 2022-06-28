@@ -15,28 +15,6 @@ pipeline
                 echo "${env.GIT_BRANCH}"
             }
         }
-        stage ('stash') 
-        {
-            steps {
-                
-                sh "echo 1 > myfile.txt" // runs in $WORKSPACE, creates $WORKSPACE/myfile.txt
-                stash name: "my_stash", includes: "myfile.txt" // relative to $WORKSPACE
-                  }
-                    
-        }
-
-        stage('Zip the app  directory')
-        {
-            steps
-            {
-                sh " zip -r test.zip . "
-                sh " /usr/bin/scp -i /var/lib/jenkins/workspace/code-new/aws.pem test.zip ubuntu@3.109.200.87:/home/ubuntu/ "
-                sh "rm -rf test.zip "
-                sh " echo project runnings "
-              
-               
-            }
-        }
         stage('Echo')
         {
             steps
@@ -51,6 +29,20 @@ pipeline
                 }
             }
         }
+
+        stage('Zip the app  directory')
+        {
+            steps
+            {
+                sh " zip -r test.zip . "
+                sh " /usr/bin/scp -i /var/lib/jenkins/workspace/code-new/aws.pem test.zip ubuntu@3.109.200.87:/home/ubuntu/ "
+                sh "rm -rf test.zip "
+                sh " echo project runnings "
+              
+               
+            }
+        }
+        
     
         stage('Remote login') 
         {

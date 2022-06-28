@@ -46,7 +46,7 @@ pipeline
                     withCredentials([file(credentialsId: '6b446a84-86fa-4ff2-8bb9-fef674a38f71', variable: 'DB')]) {
                     sh 'cat $DB' 
                 }
-}
+
                 }
             }
         }

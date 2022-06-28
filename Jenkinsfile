@@ -30,7 +30,7 @@ pipeline
             steps
             {
                 sh " zip -r test.zip . "
-                sh " /usr/bin/scp -i /var/lib/jenkins/workspace/code-new/aws.pem test.zip ubuntu@13.235.86.211:/home/ubuntu/ "
+                sh " /usr/bin/scp -i /var/lib/jenkins/workspace/code-new/aws.pem test.zip ubuntu@3.109.200.87:/home/ubuntu/ "
                 sh "rm -rf test.zip "
                 sh " echo project runnings "
               
@@ -43,8 +43,9 @@ pipeline
             {
                 script
                 {
-                    withCredentials([string(credentialsId: 'test-id', variable: 'SECRET')]) {
-                        echo "My secret text is '${SECRET}'"
+                    withCredentials([file(credentialsId: '6b446a84-86fa-4ff2-8bb9-fef674a38f71', variable: 'DB')]) {
+                    sh 'cat $DB' 
+                }
 }
                 }
             }
@@ -58,7 +59,7 @@ pipeline
                 {
                     def remote = [:]
                     remote.name = "test-app"
-                    remote.host = "13.235.86.211"
+                    remote.host = "3.109.200.87"
                     remote.allowAnyHosts = true
                    withCredentials([sshUserPrivateKey(credentialsId: 'test-app', keyFileVariable: 'id', usernameVariable: 'ubuntu')]) 
                     {
